@@ -303,8 +303,8 @@
 }
 
 % Redefine \citep and \citet
-\renewcommand{\citep}[1]{(\citeauthorhandle{#1}, \citeyear{#1})}
-\renewcommand{\citet}[1]{\citeauthorhandle{#1} (\citeyear{#1})}
+\renewcommand{\citep}[1]{(\citeauthorhandle{#1}, \citeyear*{#1})}
+\renewcommand{\citet}[1]{\citeauthorhandle{#1} (\citeyear*{#1})}
 
 % Define a new date format
 \usepackage[USenglish]{babel}
