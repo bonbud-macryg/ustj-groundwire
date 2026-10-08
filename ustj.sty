@@ -13,27 +13,16 @@
 \usepackage{calc} % for \heightof in \tombstone
 
 % ============================================================
-%  PER-ARTICLE FONT DEFINITIONS
+%  FONT DEFINITIONS
 %  ----------------------------------------------------------
-%  This is the ONLY block that is meant to differ between
-%  articles.  The default is the "TT" cut of Urbit Sans Mono;
-%  some articles use the "Ax" or "Bar" cuts shipped as .otf
-%  files alongside the manuscript.  To switch, comment out the
-%  default \setmathtt / \monofont lines and uncomment the
-%  matching alternative below.
+%  Body text is Libertine; monospace is Latin Modern Mono, the
+%  fontspec default, scaled to match the body's x-height.
 % ============================================================
-\usepackage{mathspec}
-\setmathtt[Scale=MatchLowercase]{UrbitSansMonoTT-SemiBold.ttf}
-%\setmathtt[Scale=MatchLowercase]{UrbitSansMonoAx-SemiBold.otf}  % "Ax" cut
+\usepackage{fontspec}
 \usepackage[osf]{libertineRoman}
-\newfontfamily\monofont{UrbitSansMonoTT-SemiBold.ttf}[
-  Scale=MatchLowercase,
-  % BoldFont=Urbit Sans Mono TT Light,
-  ]
-%\newfontfamily\monofont{UrbitSansMonoAx-SemiBold.otf}[Scale=MatchLowercase]   % "Ax" cut
-%\newfontfamily\monofont{UrbitSansMonoBar-SemiBold.otf}[Scale=MatchLowercase]  % "Bar" cut
+\setmonofont{Latin Modern Mono}[Scale=MatchLowercase]
+\newcommand{\monofont}{\ttfamily}
 \renewcommand{\setmonofont}{\monofont}
-\renewcommand{\texttt}[1]{{\monofont #1}}
 % Define a new font family for small caps with FakeSlant
 \newfontfamily\slantedsmallcapsfont{Libertinus Serif}[
     FakeSlant = 0.1 % Adjust the slant amount as needed
@@ -43,7 +32,7 @@
 % \renewcommand{\textsc}[1]{\scalebox{1.25}{\oldtextsc{#1}}}
 \newcommand{\ssc}[1]{{\slantedsmallcapsfont\textsc{#1}}}
 % ============================================================
-%  END PER-ARTICLE FONT DEFINITIONS
+%  END FONT DEFINITIONS
 % ============================================================
 
 % Fixed-width glyphs for Nock notation, for use with the listings
@@ -56,6 +45,8 @@
 \newcommand{\nockOmega}{\nockmonochar{c}{\symbol{"03A9}}}
 
 \usepackage{listings}
+% Latin Modern Mono is 0.525em wide; the listings default is 0.6em.
+\lstset{basewidth=0.525em}
 \usepackage[dvipsnames]{xcolor}
 \definecolor{darkgray}{rgb}{0.25, 0.25, 0.25}
 \lstdefinelanguage{Hoon}
@@ -251,13 +242,12 @@
 
 
 \usepackage{titlesec}
-\newfontfamily\urbitfont{UrbitSansTT-SemiBold.ttf}
-\titleformat{\section}{\urbitfont\Large\bfseries}{\thesection}{1em}{}
-\titleformat{\subsection}{\urbitfont\large\bfseries}{\thesubsection}{1em}{}
-\titleformat{\subsubsection}{\urbitfont\normalsize\bfseries}{\thesubsubsection}{1em}{}
-\titleformat{\paragraph}[runin]{\urbitfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\large\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalfont\normalsize\bfseries}{\thesubsubsection}{1em}{}
+\titleformat{\paragraph}[runin]{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
 \usepackage{titling}
-\renewcommand{\maketitlehooka}{\urbitfont\bfseries}
+\renewcommand{\maketitlehooka}{\normalfont\bfseries}
 % Redefine the format of the abstract heading to make it invisible
 \AtBeginDocument{\renewcommand{\abstractname}{}}
 
